@@ -7,12 +7,16 @@ export default {
     return {
       items: [],
       baseUrl: 'http://127.0.0.1:8000',
-      apiUrl: '/api',
+      apiUrl: '/api/projects',
     };
   },
   methods: {
     getData(){
-      return axios.get(this.baseUrl + this.apiUrl).then(response => {
+      const headers = {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+      return axios.get(this.baseUrl + this.apiUrl, {headers}).then(response => {
         console.log(response);
       });
     },
