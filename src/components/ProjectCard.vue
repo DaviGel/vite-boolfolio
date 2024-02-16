@@ -32,25 +32,21 @@ export default {
         },
 
         nextPage() {
-            let nextPage = this.current_page;
-            if (nextPage === this.max_page) {
-                nextPage = 1;
+            if (this.current_page === this.max_page) {
+                this.current_page = 1;
             } else {
-                nextPage++;
+                this.current_page++;
             }
-            this.current_page = nextPage;
-            this.getData(nextPage);
+            this.getData(this.current_page);
         },
 
         prevPage() {
-            let prevPage = this.current_page;
-            if (prevPage > 1) {
-                prevPage--;
+            if (this.current_page > 1) {
+                this.current_page--;
             } else {
-                prevPage = this.max_page;
+                this.current_page = this.max_page;
             }
-            this.current_page = prevPage;
-            this.getData(prevPage);
+            this.getData(this.current_page);
         },
     },
 
