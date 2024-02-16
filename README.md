@@ -11,5 +11,5 @@
 -   [x] vue router
 -   [x] creazione rotte (router.js)
 -   [x] creazione pagine
--   [] creazione rotta parametrica e pagina di dettaglio del progetto
--   [] navigazione tra le pagine
+-   [x] creazione rotta parametrica e pagina di dettaglio del progetto
+-   [x] navigazione tra le pagine
