@@ -75,7 +75,7 @@ export default {
             aria-label="Page navigation example"
             class="d-flex justify-content-center mt-3"
         >
-            <ul class="pagination">
+            <ul class="pagination d-flex gap-2">
                 <li class="page-item">
                     <button
                         class="page-link"
