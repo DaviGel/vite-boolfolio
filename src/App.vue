@@ -1,15 +1,14 @@
 <script>
-
-import ProjectCard from './components/ProjectCard.vue';
-import 'bootstrap/dist/css/bootstrap.css';
+import ProjectCard from "./components/ProjectCard.vue";
+import "bootstrap/dist/css/bootstrap.css";
 
 export default {
-  components: {
-    ProjectCard,
-  }
+    components: {
+        ProjectCard,
+    },
 };
 </script>
 
 <template>
-  <ProjectCard />
+    <ProjectCard />
 </template>
