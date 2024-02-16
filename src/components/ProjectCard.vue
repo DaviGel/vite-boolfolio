@@ -15,11 +15,11 @@ export default {
     },
 
     methods: {
-        getData(currentPage) {
+        getData() {
             return axios
                 .get(this.baseUrl + this.apiUrl, {
                     params: {
-                        page: currentPage,
+                        page: this.currentPage,
                     },
                 })
                 .then((response) => {
@@ -37,7 +37,7 @@ export default {
             } else {
                 this.currentPage++;
             }
-            this.getData(this.currentPage);
+            this.getData();
         },
 
         prevPage() {
@@ -46,12 +46,12 @@ export default {
             } else {
                 this.currentPage = this.maxPage;
             }
-            this.getData(this.currentPage);
+            this.getData();
         },
     },
 
     mounted() {
-        this.getData(this.currentPage);
+        this.getData();
     },
 };
 </script>
