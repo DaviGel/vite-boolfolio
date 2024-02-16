@@ -4,4 +4,6 @@ export default {
 };
 </script>
 
-<template>Home</template>
+<template>
+    <div class="container my-4">Home</div>
+</template>

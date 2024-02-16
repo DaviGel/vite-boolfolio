@@ -57,7 +57,7 @@ export default {
 </script>
 
 <template>
-    <div class="container my-4">
+    <div class="container py-4">
         <div class="row">
             <h1>Progetti</h1>
             <div class="col col-4 g-4" v-for="item in items">
@@ -78,7 +78,7 @@ export default {
             <ul class="pagination d-flex gap-2">
                 <li class="page-item">
                     <button
-                        class="page-link"
+                        class="page-link shadow-none"
                         @click="prevPage"
                         aria-label="Previous"
                     >
@@ -87,7 +87,7 @@ export default {
                 </li>
                 <li class="page-item">
                     <button
-                        class="page-link"
+                        class="page-link shadow-none"
                         @click="nextPage"
                         aria-label="Next"
                     >
@@ -98,3 +98,12 @@ export default {
         </nav>
     </div>
 </template>
+
+<style scoped="scss">
+.page-link {
+    &:focus {
+        z-index: 0;
+        background-color: #fff;
+    }
+}
+</style>
