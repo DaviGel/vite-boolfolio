@@ -9,7 +9,7 @@
 -   [x] Bonus: Gestire la paginazione dei risultati.
 
 -   [x] vue router
--   [] creazione rotte (router.js)
+-   [x] creazione rotte (router.js)
 -   [] creazione pagine
 -   [] creazione rotta parametrica e pagina di dettaglio del progetto
 -   [] navigazione tra le pagine
