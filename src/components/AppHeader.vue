@@ -3,21 +3,21 @@ export default {
     name: "AppHeader",
     data() {
         return {
-            // menuItems: [
-            //     {
-            //         name: "Home",
-            //         route: "home",
-            //     },
-            //     {
-            //         name: "Projects",
-            //         route: "projects",
-            //     },
-            //     {
-            //         name: "About",
-            //         route: "about",
-            //     },
-            // ],
-            menuItems: ["Home", "About", "Route"],
+            menuItems: [
+                {
+                    name: "Home",
+                    route: "home",
+                },
+                {
+                    name: "Projects",
+                    route: "projects",
+                },
+                {
+                    name: "About",
+                    route: "about",
+                },
+            ],
+            // menuItems: ["Home", "About", "Route"],
         };
     },
 };
@@ -34,8 +34,11 @@ export default {
                         :key="index"
                         class="list-unstyled"
                     >
-                        <router-link :to="{ name: item.path }" class="nav-link">
-                            {{ item }}
+                        <router-link
+                            :to="{ name: item.route }"
+                            class="nav-link"
+                        >
+                            {{ item.name }}
                         </router-link>
                     </li>
                 </ul>
