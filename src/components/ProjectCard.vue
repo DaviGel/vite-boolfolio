@@ -9,22 +9,22 @@ export default {
             items: [],
             baseUrl: "http://127.0.0.1:8000",
             apiUrl: "/api/projects",
-            current_page: 1,
-            max_page: null,
+            currentPage: 1,
+            maxPage: null,
         };
     },
 
     methods: {
-        getData(current_page) {
+        getData(currentPage) {
             return axios
                 .get(this.baseUrl + this.apiUrl, {
                     params: {
-                        page: current_page,
+                        page: currentPage,
                     },
                 })
                 .then((response) => {
                     this.items = response.data.results.data;
-                    this.max_page = response.data.results.last_page;
+                    this.maxPage = response.data.results.last_page;
                 })
                 .catch((error) => {
                     console.error("Errore:", error);
@@ -32,26 +32,26 @@ export default {
         },
 
         nextPage() {
-            if (this.current_page === this.max_page) {
-                this.current_page = 1;
+            if (this.currentPage === this.maxPage) {
+                this.currentPage = 1;
             } else {
-                this.current_page++;
+                this.currentPage++;
             }
-            this.getData(this.current_page);
+            this.getData(this.currentPage);
         },
 
         prevPage() {
-            if (this.current_page > 1) {
-                this.current_page--;
+            if (this.currentPage > 1) {
+                this.currentPage--;
             } else {
-                this.current_page = this.max_page;
+                this.currentPage = this.maxPage;
             }
-            this.getData(this.current_page);
+            this.getData(this.currentPage);
         },
     },
 
     mounted() {
-        this.getData(this.current_page);
+        this.getData(this.currentPage);
     },
 };
 </script>
