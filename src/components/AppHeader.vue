@@ -17,7 +17,6 @@ export default {
                     route: "about",
                 },
             ],
-            // menuItems: ["Home", "About", "Route"],
         };
     },
 };
