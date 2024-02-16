@@ -79,7 +79,7 @@ export default {
                 <li class="page-item">
                     <button
                         class="page-link"
-                        @click="prevPage()"
+                        @click="prevPage"
                         aria-label="Previous"
                     >
                         <span aria-hidden="true">&laquo;</span>
@@ -88,7 +88,7 @@ export default {
                 <li class="page-item">
                     <button
                         class="page-link"
-                        @click="nextPage()"
+                        @click="nextPage"
                         aria-label="Next"
                     >
                         <span aria-hidden="true">&raquo;</span>
