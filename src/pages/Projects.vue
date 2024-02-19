@@ -12,7 +12,6 @@ export default {
     data() {
         return {
             items: [],
-            itemData: {},
             baseUrl: "http://127.0.0.1:8000",
             apiUrl: "/api/projects",
             currentPage: 1,
@@ -30,7 +29,6 @@ export default {
                 })
                 .then((response) => {
                     this.items = response.data.results.data;
-                    // this.itemData = response.data.results;
                     this.maxPage = response.data.results.last_page;
                 })
                 .catch((error) => {
@@ -73,7 +71,7 @@ export default {
         </div>
         <nav
             aria-label="Page navigation example"
-            class="d-flex justify-content-center mt-3"
+            class="d-flex justify-content-center mt-3 pb-5"
         >
             <ul class="pagination d-flex gap-2">
                 <li class="page-item">
