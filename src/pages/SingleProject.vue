@@ -17,8 +17,11 @@ export default {
             return axios
                 .get(this.baseUrl + this.apiUrl + this.$route.params.slug)
                 .then((response) => {
-                    console.log(response);
-                    this.item = response.data.result;
+                    if (response.data.success) {
+                        this.item = response.data.result;
+                    } else {
+                        this.$router.push({ name: "not-found" });
+                    }
                 })
                 .catch((error) => {
                     console.error("Errore:", error);
