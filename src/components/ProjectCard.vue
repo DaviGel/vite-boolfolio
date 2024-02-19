@@ -2,7 +2,7 @@
 export default {
     name: "ProjectCard",
     props: {
-        item: Object,
+        project: Object,
     },
 };
 </script>
@@ -10,14 +10,14 @@ export default {
 <template>
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">{{ item.title }}</h5>
+            <h5 class="card-title">{{ project.title }}</h5>
             <p class="card-text">
-                {{ item.description.substring(0, 70) }}
+                {{ project.description.substring(0, 70) }}
             </p>
             <router-link
                 :to="{
                     name: 'project',
-                    params: { slug: item.slug },
+                    params: { slug: project.slug },
                 }"
                 class="btn btn-primary"
                 >Guarda il progetto</router-link

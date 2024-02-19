@@ -2,12 +2,14 @@
 import axios from "axios";
 import ProjectCard from "../components/ProjectCard.vue";
 import store from "../store";
+import ProjectSearch from "../components/ProjectSearch.vue";
 
 export default {
     name: "Projects",
 
     components: {
         ProjectCard,
+        ProjectSearch,
     },
 
     data() {
@@ -15,32 +17,44 @@ export default {
             store,
             items: [],
             maxPage: null,
+            errors: null,
+            responseData: [],
         };
     },
 
     methods: {
         getData() {
+            this.errors = null;
             return axios
                 .get(this.store.api.baseUrl + this.store.api.apiUrls.projects, {
                     params: {
                         page: this.store.projects.currentPage,
+                        key: this.store.projects.searchKey,
                     },
                 })
                 .then((response) => {
-                    this.items = response.data.results.data;
+                    this.responseData = response.data;
                     this.maxPage = response.data.results.last_page;
                 })
                 .catch((error) => {
-                    console.error("Errore:", error);
+                    this.responseData.results.data = [];
+                    this.errors = error.response.data.message;
                 });
         },
 
         nextPage() {
-            if (this.store.projects.currentPage === this.maxPage) {
+            if (this.store.projects.currentPage >= this.maxPage) {
                 this.store.projects.currentPage = 1;
             } else {
                 this.store.projects.currentPage++;
             }
+            this.$router.push({
+                name: "projects",
+                query: {
+                    page: this.store.projects.currentPage,
+                    key: this.store.projects.searchKey,
+                },
+            });
             this.getData();
         },
 
@@ -50,12 +64,30 @@ export default {
             } else {
                 this.store.projects.currentPage = this.maxPage;
             }
+            this.$router.push({
+                name: "projects",
+                query: {
+                    page: this.store.projects.currentPage,
+                    key: this.store.projects.searchKey,
+                },
+            });
             this.getData();
         },
     },
 
-    mounted() {
+    created() {
+        this.store.projects.currentPage = this.$route.query.page ?? 1;
+        this.store.projects.searchKey = this.$route.query.key ?? null;
         this.getData();
+
+        this.$watch(
+            () => this.$route.params,
+            (toParams, previousParams) => {
+                this.store.projects.currentPage = this.$route.query.page ?? 1;
+                this.store.projects.searchKey = this.$route.query.key ?? null;
+                this.getData();
+            }
+        );
     },
 };
 </script>
@@ -64,8 +96,16 @@ export default {
     <div class="container py-4">
         <div class="row">
             <h1>Progetti</h1>
-            <div class="col col-4 g-4" v-for="item in items">
-                <ProjectCard :item="item" />
+
+            <ProjectSearch @search-project="getData" />
+
+            <div v-if="errors">{{ errors }}</div>
+
+            <div
+                class="col col-4 g-4"
+                v-for="project in responseData.results?.data"
+            >
+                <ProjectCard :project="project" />
             </div>
         </div>
         <nav
