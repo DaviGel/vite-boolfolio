@@ -102,7 +102,7 @@ export default {
             <div v-if="errors">{{ errors }}</div>
 
             <div
-                class="col col-4 g-4"
+                class="col-12 col-lg-4 g-4"
                 v-for="project in responseData.results?.data"
             >
                 <ProjectCard :project="project" />
