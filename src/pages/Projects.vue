@@ -1,6 +1,7 @@
 <script>
 import axios from "axios";
 import ProjectCard from "../components/ProjectCard.vue";
+import store from "../store";
 
 export default {
     name: "Projects",
@@ -11,10 +12,8 @@ export default {
 
     data() {
         return {
+            store,
             items: [],
-            baseUrl: "http://127.0.0.1:8000",
-            apiUrl: "/api/projects",
-            currentPage: 1,
             maxPage: null,
         };
     },
@@ -22,9 +21,9 @@ export default {
     methods: {
         getData() {
             return axios
-                .get(this.baseUrl + this.apiUrl, {
+                .get(this.store.api.baseUrl + this.store.api.apiUrls.projects, {
                     params: {
-                        page: this.currentPage,
+                        page: this.store.projects.currentPage,
                     },
                 })
                 .then((response) => {
@@ -37,19 +36,19 @@ export default {
         },
 
         nextPage() {
-            if (this.currentPage === this.maxPage) {
-                this.currentPage = 1;
+            if (this.store.projects.currentPage === this.maxPage) {
+                this.store.projects.currentPage = 1;
             } else {
-                this.currentPage++;
+                this.store.projects.currentPage++;
             }
             this.getData();
         },
 
         prevPage() {
-            if (this.currentPage > 1) {
-                this.currentPage--;
+            if (this.store.projects.currentPage > 1) {
+                this.store.projects.currentPage--;
             } else {
-                this.currentPage = this.maxPage;
+                this.store.projects.currentPage = this.maxPage;
             }
             this.getData();
         },

@@ -1,5 +1,6 @@
 <script>
 import axios from "axios";
+import store from "../store";
 
 export default {
     name: "SingleProject",
@@ -7,9 +8,8 @@ export default {
     data() {
         return {
             item: [],
+            store,
             loading: false,
-            baseUrl: "http://127.0.0.1:8000",
-            apiUrl: "/api/projects/",
         };
     },
 
@@ -17,7 +17,11 @@ export default {
         getData() {
             this.loading = true;
             return axios
-                .get(this.baseUrl + this.apiUrl + this.$route.params.slug)
+                .get(
+                    this.store.api.baseUrl +
+                        this.store.api.apiUrls.projects +
+                        this.$route.params.slug
+                )
                 .then((response) => {
                     if (response.data.result) {
                         this.item = response.data.result;
